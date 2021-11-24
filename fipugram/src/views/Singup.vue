@@ -1,11 +1,20 @@
 <template>
   <div class="about">
-    <h1>This is a login page</h1>
+    <h1>This is a singup page</h1>
     <div class="container">
       <div class="row">
         <div class="col-sm"></div>
         <div class="col-sm">
           <form>
+            <div class="form-group">
+              <label for="exampleInputNameSurname1">Name and surname</label>
+              <input
+                type="NameSurname"
+                class="form-control"
+                id="exampleInputNameSurname1"
+                placeholder="Enter name and surname"
+              />
+            </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
               <input
@@ -25,6 +34,15 @@
                 type="password"
                 class="form-control"
                 id="exampleInputPassword1"
+                placeholder="Password"
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Confirm Password</label>
+              <input
+                type="confirmPassword"
+                class="form-control"
+                id="exampleInputConfirmPassword1"
                 placeholder="Password"
               />
             </div>
