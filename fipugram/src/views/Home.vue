@@ -1,25 +1,21 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <div class="jumbotron">
-      <h1 class="display-4"></h1>
-      <br />
-      <p class="lead">Hello, there!</p>
-      <hr class="my-4" />
-      <p>General Jumbotron!</p>
-      <br />
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-5">
+      <fipugram-card />
     </div>
+    <div class="col-4">... ovdje ide desni stupac!</div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import fipugramCard from "@/components/fipugramCard.vue";
 
 export default {
-  name: "Home",
+  name: "home",
   components: {
-    HelloWorld,
+    fipugramCard,
   },
 };
 </script>
