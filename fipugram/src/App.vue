@@ -1,6 +1,9 @@
 <template>
-  <div id="app">
-    <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
+  <div id="app" class="mb-4 sticky-top">
+    <nav
+      id="nav"
+      class="navbar navbar-expand-lg navbar-light bg-light m-0 p-0 pb-4 pt-3"
+    >
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <img
@@ -59,8 +62,7 @@
 }
 
 #nav {
-  padding: 30px;
-  background-color: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.125);
 
   a {
     font-weight: bold;
