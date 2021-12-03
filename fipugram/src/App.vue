@@ -35,6 +35,7 @@
           </ul>
           <form class="form-inline my-2 my-lg-2 d-flex">
             <input
+              v-model="store.searchTerm"
               class="form-control me-2"
               type="search"
               placeholder="Search"
@@ -51,6 +52,19 @@
 
   <router-view />
 </template>
+
+<script>
+import store from "@/store.js";
+
+export default {
+  name: "app",
+  data() {
+    return {
+      store,
+    };
+  },
+};
+</script>
 
 <style lang="scss">
 #app {

@@ -14,9 +14,11 @@
       /></a>
 
       <div class="text-start p-1"><b>&nbsp&nbspUsername</b></div>
+      <br />
+      <p class="p-0 m-0 pb-2">{{ info.description }}</p>
     </div>
     <div class="card-body p-0">
-      <img class="card-img-top" src="https://picsum.photos/800" alt="" />
+      <img class="card-img-top" :src="info.url" alt="" />
     </div>
     <div class="card-footer text-muted p-2 m-0 row">
       <div class="container-fluid p-0 col-12">
@@ -46,12 +48,14 @@
           <button class="btn c-btn" type="submit"><b>Post</b></button>
         </form>
       </div>
+      <p class="text-small">{{ info.time }}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: ["info"],
   name: "fipugramCard",
 };
 </script>
@@ -63,5 +67,8 @@ export default {
 .c-comment {
   background-color: transparent !important;
   border: none;
+}
+.text-small {
+  font-size: 12px;
 }
 </style>
