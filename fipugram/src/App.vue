@@ -6,12 +6,14 @@
     >
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <img
-            src="@/assets/fipugram_logo.png"
-            alt=""
-            height="40"
-            class="d-inline-block align-text-top"
-          />
+          <router-link to="/home">
+            <img
+              src="@/assets/fipugram_logo.png"
+              alt=""
+              height="40"
+              class="d-inline-block align-text-top"
+            />
+          </router-link>
         </a>
         <button
           class="navbar-toggler"
@@ -27,11 +29,29 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <router-link to="/" class="nav-item p-1"> Home</router-link>
-            <router-link to="/login" class="nav-item p-1"> Login </router-link>
-            <router-link to="/singup" class="nav-item p-1">
-              Singup
+            <router-link to="/home" class="nav-item p-1"> Home</router-link>
+            <router-link
+              v-if="!store.currentUser"
+              to="/login"
+              class="nav-item p-1"
+            >
+              Login
             </router-link>
+            <router-link
+              v-if="!store.currentUser"
+              to="/singup"
+              class="nav-item p-1"
+            >
+              Sing up
+            </router-link>
+            <a
+              href="#"
+              v-if="store.currentUser"
+              @click="logout()"
+              class="nav-item p-1"
+            >
+              Log out
+            </a>
           </ul>
           <form class="form-inline my-2 my-lg-2 d-flex">
             <input
@@ -55,6 +75,17 @@
 
 <script>
 import store from "@/store.js";
+import { firebase } from "@/firebase";
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log("Logiran korisnik: " + user.email);
+    store.currentUser = user.email;
+  } else {
+    console.log("No user...");
+    store.currentUser = null;
+  }
+});
 
 export default {
   name: "app",
@@ -62,6 +93,17 @@ export default {
     return {
       store,
     };
+  },
+  methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          console.log("Uspješno odjavljen: ");
+          this.$router.push({ name: "Login" });
+        });
+    },
   },
 };
 </script>

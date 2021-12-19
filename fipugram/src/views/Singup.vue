@@ -7,18 +7,10 @@
         <div class="col-sm">
           <form>
             <div class="form-group">
-              <label for="exampleInputNameSurname1">Name and surname</label>
-              <input
-                type="NameSurname"
-                class="form-control"
-                id="exampleInputNameSurname1"
-                placeholder="Enter name and surname"
-              />
-            </div>
-            <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
               <input
                 type="email"
+                v-model="email"
                 class="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
@@ -32,6 +24,7 @@
               <label for="exampleInputPassword1">Password</label>
               <input
                 type="password"
+                v-model="password"
                 class="form-control"
                 id="exampleInputPassword1"
                 placeholder="Password"
@@ -40,13 +33,16 @@
             <div class="form-group">
               <label for="exampleInputPassword1">Confirm Password</label>
               <input
-                type="confirmPassword"
+                type="password"
+                v-model="passwordConfirm"
                 class="form-control"
                 id="exampleInputConfirmPassword1"
                 placeholder="Password"
               />
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" @click="signup()" class="btn btn-primary">
+              Submit
+            </button>
           </form>
         </div>
         <div class="col-sm"></div>
@@ -54,3 +50,35 @@
     </div>
   </div>
 </template>
+
+<script>
+import { firebase } from "@/firebase";
+
+export default {
+  name: "Signup",
+  data() {
+    return {
+      email: "",
+      password: "",
+      passwordConfirm: "",
+    };
+  },
+  methods: {
+    signup() {
+      if (this.password != this.passwordConfirm) alert("Lozinke nisu iste!");
+      else
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.email, this.password)
+          .then(function () {
+            console.log("Uspješna registracija");
+          })
+          .catch(function (error) {
+            console.error("Došlo je do greške: ", error);
+            if (error.code == "auth/weak-password")
+              alert("Lozinka treba imati najmanje 6 znakova!");
+          });
+    },
+  },
+};
+</script>
