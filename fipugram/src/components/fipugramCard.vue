@@ -13,7 +13,9 @@
         ><img class="float-end" src="@/assets/dots.png" alt="" width="30"
       /></a>
 
-      <div class="text-start p-1"><b>&nbsp&nbspUsername</b></div>
+      <div class="text-start p-1">
+        <b>&nbsp&nbsp{{ info.username }}</b>
+      </div>
       <br />
       <p class="p-0 m-0 pb-2">{{ info.description }}</p>
     </div>

@@ -23,6 +23,23 @@
       </div>
     </div>
     <div class="col-3">
+      <form class="form-inline my-2 my-lg-2 d-flex">
+        <input
+          v-model="inputIme"
+          class="form-control me-2"
+          type="search"
+          placeholder="Ime"
+          aria-label="Search"
+        />
+        <input
+          v-model="inputPrezime"
+          class="form-control me-2"
+          type="search"
+          placeholder="Prezime"
+          aria-label="Search"
+        />
+      </form>
+      <p>Ime Prezime: {{ inputIme + " " + inputPrezime }}</p>
       <p class="text-start float-start text-secondary">Suggestions for you</p>
       <p
         class="
@@ -53,20 +70,25 @@ import store from "@/store.js";
 
 let hello = "world";
 let cards = [];
+let inputIme = "";
+let inputPrezime = "";
 
 cards = [
   {
     url: "https://picsum.photos/801",
+    username: "person1",
     description: "slika1",
     time: "few min ago",
   },
   {
     url: "https://picsum.photos/802",
+    username: "person2",
     description: "slika2",
     time: "hour ago",
   },
   {
     url: "https://picsum.photos/803",
+    username: "person3",
     description: "slika3",
     time: "few hours ago",
   },
@@ -78,13 +100,18 @@ export default {
     return {
       cards,
       store,
+      inputIme,
+      inputPrezime,
     };
   },
   computed: {
     filteredCards() {
       let termin = this.store.searchTerm;
 
-      return this.cards.filter((card) => card.description.includes(termin));
+      return this.cards.filter(
+        (card) =>
+          card.description.includes(termin) || card.username.includes(termin)
+      );
     },
   },
   components: {
